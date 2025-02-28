@@ -1,0 +1,100 @@
+// Flex контейнер
+.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.d-flex-nowrap {
+    display: flex;
+}
+
+.d-inline {
+    display: inline;
+}
+
+[class^="col-"] {
+    padding: 0.5rem;
+}
+
+// Генерация классов col-1 до col-12
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        flex: 0 0 calc(#{100%} / 12 * #{$i});
+        max-width: calc(#{100%} / 12 * #{$i});
+    }
+}
+
+// Генерация адаптивных классов col-sm-*, col-md-*, col-lg-*, col-xl-*
+@each $breakpoint, $size in $breakpoints {
+    @media (min-width: $size) {
+        @for $i from 1 through 12 {
+            .col-#{$breakpoint}-#{$i} {
+                flex: 0 0 calc(#{100%} / 12 * #{$i});
+                max-width: calc(#{100%} / 12 * #{$i});
+            }
+        }
+    }
+}
+
+.align-items {
+    &-start {
+        align-items: flex-start; // Начало по вертикали
+    }
+    &-center {
+        align-items: center; // Центр по вертикали
+    }
+    &-end {
+        align-items: flex-end; // Конец по вертикали
+    }
+    &-baseline {
+        align-items: baseline; // Выравнивание по базовой линии
+    }
+    &-stretch {
+        align-items: stretch; // Растягивание по высоте
+    }
+}
+
+.justify-content {
+    &-start {
+        justify-content: flex-start; // Начало по горизонтали
+    }
+    &-center {
+        justify-content: center; // Центр по горизонтали
+    }
+    &-end {
+        justify-content: flex-end; // Конец по горизонтали
+    }
+    &-between {
+        justify-content: space-between; // Пространство между элементами
+    }
+    &-around {
+        justify-content: space-around; // Пространство вокруг элементов
+    }
+    &-evenly {
+        justify-content: space-evenly; // Равномерное пространство между элементами
+    }
+}
+
+.flex-direction {
+    &-row {
+        flex-direction: row; // По умолчанию: горизонтальное расположение
+    }
+    &-row-reverse {
+        flex-direction: row-reverse; // Горизонтальное расположение в обратном порядке
+    }
+    &-column {
+        flex-direction: column; // Вертикальное расположение
+    }
+    &-column-reverse {
+        flex-direction: column-reverse; // Вертикальное расположение в обратном порядке
+    }
+}
+
+.flex-wrap {
+    &-wrap {
+        flex-wrap: wrap; // Элементы оборачиваются
+    }
+    &-nowrap {
+        flex-wrap: nowrap; // Элементы не оборачиваются
+    }
+}

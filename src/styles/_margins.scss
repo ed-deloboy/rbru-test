@@ -1,0 +1,23 @@
+@mixin margin($direction, $value) {
+    @if $direction == "top" {
+        margin-top: $value;
+    } @else if $direction == "bottom" {
+        margin-bottom: $value;
+    }
+}
+
+// Миксин для генерации классов отступов
+@mixin generate-margin-classes($prefix, $direction) {
+    @for $i from 1 through 20 {
+        // Генерация класса с отступами
+        .#{$prefix}-#{$i} {
+            @include margin($direction, 0.2rem * $i); // 0.2rem * i для значений от 0.2rem до 4rem
+        }
+    }
+}
+
+// Генерация классов отступов сверху
+@include generate-margin-classes("mt", "top");
+
+// Генерация классов отступов снизу
+@include generate-margin-classes("mb", "bottom");
